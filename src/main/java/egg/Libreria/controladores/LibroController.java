@@ -50,7 +50,7 @@ public class LibroController {
         } else {
             model.addAttribute("libros", libroServicio.listarLibros());
         }
-        return "main";
+        return "libro-list";
     }
 
     @GetMapping("/form")
