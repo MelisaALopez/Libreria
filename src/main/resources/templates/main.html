@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/main.css" rel="stylesheet">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card-body">
+                <form class="row g-3" th:action="@{/libro/list}" method="GET">
+                    <div class="col">
+                        <input type="text" style="width: 100%" name="q" placeholder="Buscar...">
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-dark mb-3">Buscar</button>
+                    </div>
+                </form>
+                <div class="card-body-item">
+                    <div clas="texto-medio">
+                        <div th:each=" libro,iterator : ${libros}">
+                            <div th:text="${iterator.index+1}"></td>
+                                <h5 class="card-title" th:text="${libro.isbn}"></h5>
+                                <p class="phone" th:text="${libro.titulo}"></p>
+                                <div class="datos">
+                                    <div>
+                                        <p th:text="${libro.anio}"></p>
+                                        <p>Gender</p>
+                                    </div>
+                                    <div>
+                                        <p th:text="${libro.ejemplares}"></p>
+                                        <p>Nat</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head">
+    </head>
+
+    <body>
+        <nav th:replace="/fragments/navbar :: navbar-dark"></nav>
+        <div class="container">
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <strong th:text="${error}">Holy guacamole!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <strong th:text="${success}">Holy guacamole!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="card mt-5">
+                <div class="card-header d-flex">
+                    <h2>Editoriales</h2>
+                    <button class="btn-dark px-5 py-2 ms-auto"><a th:href="@{/editorial/form}">Crear Editorial</a></button>
+                </div>
+                <div class="card-body">
+                    <form class="row g-3" th:action="@{/editorial/list}" method="GET">
+                        <div class="col">
+                            <input type="text" style="width: 100%" name="q" placeholder="Buscar...">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-dark mb-3">Buscar</button>
+                        </div>
+                    </form>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each=" editorial,iterator : ${editoriales}">
+                                <td th:text="${iterator.index+1}"></td>
+                                <td th:text="${editorial.nombre}"></td>
+                                <td>
+                                    <button class="btn-dark ms-auto"><a th:href="@{/editorial/delete}+'?id='+${editorial.id}" class="px-5 py-2">Eliminar</a></button>
+                                    <button class="btn-dark ms-auto"><a th:href="@{/editorial/form}+'?id='+${editorial.id}" class="px-5 py-2">Editar</a></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <p th:if="${editoriales.isEmpty}">No hay editoriales cargadas</p>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

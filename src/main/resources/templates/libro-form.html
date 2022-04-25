@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head">
+</head>
+
+<body>
+    <nav th:replace="/fragments/navbar :: navbar-dark"></nav>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header d-flex">
+                <h2>Crear Libro</h2>
+                <button class="btn-dark ms-auto"><a class="px-5 py-2" th:href="@{/libro/list}">Lista de Libros</a></button>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/libro/save}" method="POST" th:object="${libro}" class="col-6 mx-auto">
+                    <input hidden th:field ="*{id}">
+                    <div class="mb-3">
+                        <label for="isbn" class="form-label">ISBN</label>
+                        <input type="number" class="form-control" th:field="*{isbn}">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text" class="form-control" th:field="*{titulo}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="anio" class="form-label">Año</label>
+                        <input type="number" class="form-control" th:field="*{anio}">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="ejemplares" class="form-label">Total de Ejemplares</label>
+                        <input type="number" class="form-control" th:field="*{ejemplares}">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="ejemplaresPrestados" class="form-label">Ejemplares Prestados</label>
+                        <input type="number" class="form-control" th:field="*{ejemplaresPrestados}">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="autor" class="form-label">Autor</label>
+                        <select th:field="*{autor.id}">
+                            <option th:each="a : ${autores}" th:text="${a.nombre}" th:value="${a.id}"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editorial" class="form-label">Editorial</label>
+                        <select th:field="*{editorial.id}">
+                            <option th:each="e : ${editoriales}" th:text="${e.nombre}" th:value="${e.id}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-dark px-5 py-2 ms-auto">Guardar</button>
+                    <button type="reset" class="btn-dark px-5 py-2 ms-auto">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+</body>
+
+</html>

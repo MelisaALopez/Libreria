@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head">
+    </head>
+
+    <body>
+        <nav th:replace="/fragments/navbar :: navbar-dark"></nav>
+        <br>
+        <div class="container">
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <strong th:text="${error}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <strong th:text="${success}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="card mt-5">
+                <div class="card-header d-flex">
+                    <h2>Registro de Usuario</h2>
+                   
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/registro}" method="POST" class="col-6 mx-auto">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" th:value="${nombre}" name="nombre">  
+                        </div>
+                         <div class="mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" th:value="${apellido}" name="apellido">  
+                        </div>
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="text" class="form-control" th:value="${edad}" name="edad">  
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail" class="form-label">Mail</label>
+                            <input type="email" class="form-control" th:value="${mail}" name="mail">  
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password">  
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password2">  
+                        </div>
+                        <button type="submit" class="btn-dark px-5 py-2 ms-auto">Guardar</button>
+                        <button class="btn-dark px-5 py-2 ms-auto"><a th:href="@{/}">Volver</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,14 @@
+body{
+    background-image: url(/img/background-libreria.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgb(236, 230, 217);
+}
